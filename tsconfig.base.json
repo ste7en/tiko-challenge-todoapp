@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@tiko-challenge/authentication": ["libs/authentication/src/index.ts"],
+      "@tiko-challenge/shared-configs": ["libs/shared/configs/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
