@@ -29,6 +29,7 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
+    "scheme": "todoapp",
     "plugins": [
       [
         "@config-plugins/detox",
