@@ -1,6 +1,7 @@
 const { withNxMetro } = require('@nx/expo');
 const { getDefaultConfig } = require('@expo/metro-config');
-//const { mergeConfig } = require('metro-config');
+// const { withTamagui } = require('@tamagui/metro-plugin')
+// const { mergeConfig } = require('metro-config');
 
 const defaultConfig = getDefaultConfig(__dirname);
 // const { assetExts, sourceExts } = defaultConfig.resolver;
@@ -22,7 +23,8 @@ const defaultConfig = getDefaultConfig(__dirname);
 //   },
 // };
 // const nxConfig = withNxMetro(mergeConfig(defaultConfig, customConfig));
-module.exports = withNxMetro(defaultConfig, {
+
+const nxConfig = withNxMetro(defaultConfig, {
   // Change this to true to see debugging info.
   // Useful if you have issues resolving modules
   debug: false,
@@ -31,3 +33,12 @@ module.exports = withNxMetro(defaultConfig, {
   // Specify folders to watch, in addition to Nx defaults (workspace libraries and node_modules)
   watchFolders: [],
 });
+
+// add nice web support with optimizing compiler + CSS extraction
+// const tamaguiConfig = withTamagui(defaultConfig, {
+//   components: ['tamagui'],
+//   config: './tamagui.config.ts',
+//   outputCSS: './tamagui-web.css',
+// })
+
+module.exports = nxConfig;

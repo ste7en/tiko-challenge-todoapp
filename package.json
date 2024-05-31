@@ -51,8 +51,13 @@
   "dependencies": {
     "@expo/metro-config": "~0.17.3",
     "@expo/metro-runtime": "~3.1.1",
+    "@tamagui/babel-plugin": "^1.99.1",
+    "@tamagui/config": "^1.99.1",
+    "@tamagui/lucide-icons": "^1.99.1",
+    "@tamagui/metro-plugin": "^1.99.1",
     "expo": "~50.0.3",
     "expo-constants": "~15.4.6",
+    "expo-font": "~11.10.3",
     "expo-linking": "~6.2.2",
     "expo-router": "~3.4.10",
     "expo-secure-store": "~12.8.1",
@@ -66,6 +71,7 @@
     "react-native-svg": "14.1.0",
     "react-native-svg-transformer": "1.2.0",
     "react-native-web": "~0.19.6",
+    "tamagui": "^1.99.1",
     "tslib": "^2.3.0"
   }
 }
