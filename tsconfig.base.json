@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@tiko-challenge/authentication": ["libs/authentication/src/index.ts"],
+      "@tiko-challenge/shared-api": ["libs/shared/api/src/index.ts"],
       "@tiko-challenge/shared-configs": ["libs/shared/configs/src/index.ts"]
     }
   },
