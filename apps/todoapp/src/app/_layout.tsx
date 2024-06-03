@@ -9,6 +9,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { TamaguiProvider } from 'tamagui';
 import { SessionProvider } from '@tiko-challenge/authentication';
 import tamaguiConfig from '../../tamagui.config';
+import { APIClientProvider } from '@tiko-challenge/shared-api';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,11 +34,13 @@ export default function Root() {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <SessionProvider>
-          <SafeAreaProvider>
-            <Slot />
-          </SafeAreaProvider>
-        </SessionProvider>
+        <APIClientProvider baseUrl={process.env.EXPO_PUBLIC_API_URL ?? 'localhost:3000'}>
+          <SessionProvider>
+            <SafeAreaProvider>
+              <Slot />
+            </SafeAreaProvider>
+          </SessionProvider>
+        </APIClientProvider>
       </ThemeProvider>
     </TamaguiProvider>
   );
