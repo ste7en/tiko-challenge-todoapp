@@ -13,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -27,14 +29,22 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
+    "scheme": "todoapp",
+    "userInterfaceStyle": "automatic",
     "plugins": [
       [
         "@config-plugins/detox",
         {
           "skipProguard": false,
-          "subdomains": ["10.0.2.2", "localhost"]
+          "subdomains": [
+            "10.0.2.2",
+            "localhost"
+          ]
         }
-      ]
+      ],
+      "expo-router",
+      "expo-secure-store",
+      "expo-font"
     ]
   }
 }
