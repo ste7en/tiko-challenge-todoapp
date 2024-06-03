@@ -39,7 +39,8 @@
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      }
+      },
+      "exclude": ["apps/dev-webserver-e2e/**/*"]
     },
     {
       "plugin": "@nx/detox/plugin",
@@ -49,5 +50,12 @@
         "testTargetName": "test"
       }
     }
-  ]
+  ],
+  "targetDefaults": {
+    "@nx/esbuild:esbuild": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    }
+  }
 }
