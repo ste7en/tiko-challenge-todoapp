@@ -1,18 +1,13 @@
-import { useSession } from '@tiko-challenge/authentication';
 import React from 'react';
-import {
-  Text,
-  TouchableOpacity
-} from 'react-native';
 import { View } from 'tamagui';
+import { TodoList } from '@tiko-challenge/todo';
+
+
 
 const Home = () => {
-  const {signOut} = useSession()
   return (
     <View flex={1}>
-      <TouchableOpacity onPress={signOut}>
-        <Text>Logout</Text>
-      </TouchableOpacity>
+      <TodoList />
     </View>
   )
 };

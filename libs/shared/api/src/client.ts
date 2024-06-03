@@ -98,7 +98,7 @@ class APIClient {
     return await this.get<TodoResponse>(endpoint, { headers: this.getAuthorizationHeader() });
   }
 
-  public async updateTodo(id: number, data: Todo): Promise<void> {
+  public async updateTodo(id: number, data: Omit<Todo, 'id'>): Promise<void> {
     const endpoint: ApiPath = {
       ...paths.todo,
       path: paths.todo.path.replace(':id', id.toString()) as `/${string}`,

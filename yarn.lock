@@ -6178,7 +6178,7 @@ __metadata:
     react-native-screens: "npm:~3.29.0"
     react-native-svg: "npm:14.1.0"
     react-native-svg-transformer: "npm:1.2.0"
-    react-native-web: "npm:~0.19.6"
+    react-native-web: "npm:~0.19.9"
     react-test-renderer: "npm:18.2.0"
     tamagui: "npm:^1.99.1"
     ts-jest: "npm:^29.1.0"
@@ -17043,7 +17043,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-web@npm:^0.19.12, react-native-web@npm:~0.19.6":
+"react-native-web@npm:^0.19.12, react-native-web@npm:~0.19.9":
   version: 0.19.12
   resolution: "react-native-web@npm:0.19.12"
   dependencies:

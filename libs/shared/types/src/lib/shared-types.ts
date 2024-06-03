@@ -1,3 +1,3 @@
-export function sharedTypes(): string {
-  return 'shared-types';
-}
+import { TodoResponse, Todo as TodoT } from "@tiko-challenge/shared-api";
+
+export type Todo = TodoResponse & TodoT

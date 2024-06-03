@@ -18,7 +18,8 @@
       "@tiko-challenge/authentication": ["libs/authentication/src/index.ts"],
       "@tiko-challenge/shared-api": ["libs/shared/api/src/index.ts"],
       "@tiko-challenge/shared-configs": ["libs/shared/configs/src/index.ts"],
-      "@tiko-challenge/shared-types": ["libs/shared/types/src/index.ts"]
+      "@tiko-challenge/shared-types": ["libs/shared/types/src/index.ts"],
+      "@tiko-challenge/todo": ["libs/todo/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
