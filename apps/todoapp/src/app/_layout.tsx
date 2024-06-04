@@ -10,6 +10,7 @@ import { TamaguiProvider } from 'tamagui';
 import { SessionProvider } from '@tiko-challenge/authentication-core';
 import tamaguiConfig from '../../tamagui.config';
 import { APIClientProvider } from '@tiko-challenge/shared-api';
+import {ToastProvider} from '@tamagui/toast'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -37,7 +38,9 @@ export default function Root() {
         <SessionProvider>
           <APIClientProvider baseUrl={process.env.EXPO_PUBLIC_API_URL ?? 'localhost:3000'}>
             <SafeAreaProvider>
-              <Slot />
+              <ToastProvider>
+                <Slot />
+              </ToastProvider>
             </SafeAreaProvider>
           </APIClientProvider>
         </SessionProvider>
