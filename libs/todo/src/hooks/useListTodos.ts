@@ -6,6 +6,7 @@ import { useStorageState } from '@tiko-challenge/shared-configs'
 type UseListTodos = {
   todos: Todo[]
   refetch: () => void
+  setTodos: (todos: Todo[]) => void
   isLoading: boolean
 }
 
@@ -16,7 +17,7 @@ export default function useListTodos(): UseListTodos {
   const [[, cache], updateCache] = useStorageState('cached-todos')
   const client = useAPIClient()
   
-  const refetch = React.useCallback(() => {
+  const refetch = () => {
     setIsLoading(true)
     if (cache) {
       setTodos(JSON.parse(cache))
@@ -28,9 +29,9 @@ export default function useListTodos(): UseListTodos {
       })
       .catch(console.error)
       .finally(() => setIsLoading(false))
-    }, [])
+    }
   
-  React.useEffect(refetch, [refetch])
+  React.useEffect(refetch, [])
   
-  return { todos, isLoading, refetch }
+  return { todos, isLoading, refetch, setTodos }
 }
