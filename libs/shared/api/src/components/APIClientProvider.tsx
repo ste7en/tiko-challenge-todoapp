@@ -23,6 +23,7 @@ const APIClientProvider: React.FC<APIClientProviderProps> = ({ baseUrl, children
             accessToken: newSession.access,
             refreshToken: newSession.refresh,
           });
+          apiClient.setAuthorization(newSession.access);
         } catch (e) {
           onSessionExpire()
         }
