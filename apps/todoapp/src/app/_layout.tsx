@@ -34,13 +34,13 @@ export default function Root() {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <APIClientProvider baseUrl={process.env.EXPO_PUBLIC_API_URL ?? 'localhost:3000'}>
-          <SessionProvider>
+        <SessionProvider>
+          <APIClientProvider baseUrl={process.env.EXPO_PUBLIC_API_URL ?? 'localhost:3000'}>
             <SafeAreaProvider>
               <Slot />
             </SafeAreaProvider>
-          </SessionProvider>
-        </APIClientProvider>
+          </APIClientProvider>
+        </SessionProvider>
       </ThemeProvider>
     </TamaguiProvider>
   );

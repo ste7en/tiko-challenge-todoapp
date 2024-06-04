@@ -6,6 +6,7 @@ class APIClient {
   private static instance: APIClient;
   private baseUrl: string;
   private authorization: string | null = null;
+  private tokenRefresher: (() => Promise<void>) | null = null;
 
   private constructor(baseUrl: string) {
     this.baseUrl = baseUrl;
@@ -20,6 +21,7 @@ class APIClient {
 
   public setAuthorization(token: string | null): void {
     this.authorization = token;
+    console.debug(`[ debug ] Authorization: ${token ? 'Bearer [redacted]' : 'null'}`);
   }
 
   private getAuthorization(): string | null {
@@ -32,6 +34,10 @@ class APIClient {
     return {
       Authorization: `Bearer ${token}`,
     };
+  }
+
+  public setTokenRefresher(refresher: (() => Promise<void>) | null): void {
+    this.tokenRefresher = refresher;
   }
 
   private urlBuilder(path: string): string {
@@ -54,8 +60,24 @@ class APIClient {
       data,
       ...opts,
     };
-    const response: AxiosResponse<T> = await axios(config);
-    return response.data;
+    try {
+      console.debug(`[ debug ] ${method} ${url}`)
+      const response: AxiosResponse<T> = await axios(config);
+      console.debug(`[ debug ] ${method} ${url} - ${response.status}`);
+      return response.data;
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        console.error(`[ error ] ${method} ${url} - ${e.response?.status} - ${e.response?.data}`)
+        if (e.response?.status === 401 && this.tokenRefresher) {
+          console.error(`[ error ] ${e.config?.method} ${e.config?.url} - ${e.response.status} - refreshing token ...`);
+          await this.tokenRefresher();
+          console.debug('[ debug ] token refreshed, retrying ...')
+          opts.headers = {...opts.headers, ...this.getAuthorizationHeader()}
+          return await this.request<T>(method, endpoint, data, opts);
+        }
+      }
+      throw e;
+    }
   }
 
   public async get<T = unknown>(endpoint: ApiPath, opts: AxiosRequestConfig = {}): Promise<T> {

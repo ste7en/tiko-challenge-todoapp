@@ -1,14 +1,18 @@
-import { Text } from 'react-native';
 import { Redirect, Stack } from 'expo-router';
 
 import { useSession } from '@tiko-challenge/authentication-core';
+import { Spinner, YStack } from 'tamagui';
 
 export default function AppLayout() {
-  const { session, isLoading } = useSession();
+  const { session, isLoading, isValidated } = useSession();
 
   // You can keep the splash screen open, or render a loading screen like we do here.
-  if (isLoading) {
-    return <Text>Loading...</Text>;
+  if (isLoading || !isValidated) {
+    return (
+      <YStack flex={1} alignItems='center' justifyContent='center'>
+        <Spinner size='large' color='$orange10' />
+      </YStack>
+    );
   }
 
   // Only require authentication within the (app) group's layout as users
