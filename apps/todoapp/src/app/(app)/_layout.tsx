@@ -1,7 +1,7 @@
 import { Text } from 'react-native';
 import { Redirect, Stack } from 'expo-router';
 
-import { useSession } from '@tiko-challenge/authentication';
+import { useSession } from '@tiko-challenge/authentication-core';
 
 export default function AppLayout() {
   const { session, isLoading } = useSession();

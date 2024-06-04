@@ -1,4 +1,4 @@
-import { SignUpForm } from '@tiko-challenge/authentication'
+import { SignUpForm } from '@tiko-challenge/authentication-core'
 import { useRouter } from 'expo-router'
 import React from 'react'
 

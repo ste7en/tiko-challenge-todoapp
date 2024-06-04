@@ -7,7 +7,7 @@ import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { TamaguiProvider } from 'tamagui';
-import { SessionProvider } from '@tiko-challenge/authentication';
+import { SessionProvider } from '@tiko-challenge/authentication-core';
 import tamaguiConfig from '../../tamagui.config';
 import { APIClientProvider } from '@tiko-challenge/shared-api';
 

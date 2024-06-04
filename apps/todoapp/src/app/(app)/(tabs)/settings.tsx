@@ -1,6 +1,6 @@
 import { Alert, SectionList } from 'react-native'
 import React from 'react'
-import { useSession } from '@tiko-challenge/authentication'
+import { useSession } from '@tiko-challenge/authentication-core'
 import { ListItem, Text, View } from 'tamagui'
 
 const Settings = () => {

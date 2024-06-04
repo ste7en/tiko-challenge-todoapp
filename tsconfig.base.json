@@ -10,17 +10,33 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@tiko-challenge/authentication": ["libs/authentication/src/index.ts"],
-      "@tiko-challenge/shared-api": ["libs/shared/api/src/index.ts"],
-      "@tiko-challenge/shared-configs": ["libs/shared/configs/src/index.ts"],
-      "@tiko-challenge/shared-types": ["libs/shared/types/src/index.ts"],
-      "@tiko-challenge/todo": ["libs/todo/src/index.ts"]
+      "@tiko-challenge/authentication-core": [
+        "libs/authentication/core/src/index.ts"
+      ],
+      "@tiko-challenge/shared-api": [
+        "libs/shared/api/src/index.ts"
+      ],
+      "@tiko-challenge/shared-configs": [
+        "libs/shared/configs/src/index.ts"
+      ],
+      "@tiko-challenge/shared-types": [
+        "libs/shared/types/src/index.ts"
+      ],
+      "@tiko-challenge/todo": [
+        "libs/todo/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

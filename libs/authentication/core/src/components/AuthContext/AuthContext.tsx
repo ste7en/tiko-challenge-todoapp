@@ -2,37 +2,43 @@
 import React from 'react';
 import { useStorageState } from '@tiko-challenge/shared-configs';
 import { AuthenticationState } from '../../types/AuthenticationState';
-import { useAPIClient } from '@tiko-challenge/shared-api';
 import {router} from 'expo-router';
 
-export const AuthContext = React.createContext<{
-  signIn: (session: AuthenticationState) => void;
-  signOut: () => void;
+type SessionProviderValue = {
   session: AuthenticationState;
   isLoading: boolean;
-}>({
-  signIn: () => null,
+  onSessionChange: (session: AuthenticationState) => void;
+  onSessionExpire: () => void;
+  signOut: () => void;
+}
+
+export const AuthContext = React.createContext<SessionProviderValue>({
   signOut: () => null,
   session: null,
   isLoading: false,
+  onSessionChange: () => null,
+  onSessionExpire: () => null,
 })
 
 export function SessionProvider(props: React.PropsWithChildren) {
   const [[isLoading, sessionJSON], setSession] = useStorageState('session');
-  const client = useAPIClient();
   const session: AuthenticationState = sessionJSON ? JSON.parse(sessionJSON) : null;
 
+  const onSessionExpire = () => {
+    setSession(null);
+  }
+
+  const onSessionChange = (newSession: AuthenticationState) => {
+    setSession(JSON.stringify(newSession));
+    router.replace('/');
+  }
+  
   return (
     <AuthContext.Provider
       value={{
-        signIn: (newSession) => {
-          setSession(JSON.stringify(newSession));
-          client.setAuthorization(newSession?.accessToken || null);
-          router.replace('/');
-        },
-        signOut: () => {
-          setSession(null);
-        },
+        onSessionChange,
+        signOut: onSessionExpire,
+        onSessionExpire,
         session,
         isLoading,
       }}>

@@ -1,5 +1,6 @@
 import React, { createContext } from 'react';
 import APIClient from '../client';
+import { useSession } from '@tiko-challenge/authentication-core';
 
 const APIClientContext = createContext<APIClient | undefined>(undefined);
 

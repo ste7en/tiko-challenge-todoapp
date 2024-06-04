@@ -7,12 +7,12 @@ type UseLogin = {
   error: string | null
   login: (email: string, password: string) => Promise<void>
 }
-
+// move to a new package -- login
 export default function useLogin(): UseLogin {
   const [isLoading, setIsLoading] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
   const client = useAPIClient()
-  const {signIn} = useSession()
+  const {onSessionChange} = useSession()
 
   const login = async (email: string, password: string) => {
     setIsLoading(true)
@@ -20,7 +20,7 @@ export default function useLogin(): UseLogin {
     try {
       console.log({email, password})
       const data = await client.login({email, password})
-      signIn({
+      onSessionChange({
         accessToken: data.access,
         refreshToken: data.refresh,
       })

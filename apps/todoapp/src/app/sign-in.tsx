@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'expo-router'
-import { SignInForm } from '@tiko-challenge/authentication'
+import { SignInForm } from '@tiko-challenge/authentication-core'
 
 const SignIn = () => {
   const {navigate} = useRouter()
