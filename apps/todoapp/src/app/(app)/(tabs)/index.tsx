@@ -1,14 +1,14 @@
 import React from 'react';
-import { View } from 'tamagui';
+import { KeyboardAvoidingView } from 'react-native';
 import { TodoList } from '@tiko-challenge/todo';
-
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Home = () => {
+  const {top} = useSafeAreaInsets()
   return (
-    <View flex={1}>
+    <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={top}>
       <TodoList />
-    </View>
+    </KeyboardAvoidingView>
   )
 };
 
