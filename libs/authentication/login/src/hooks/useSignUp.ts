@@ -1,6 +1,6 @@
 import React from 'react'
 import { User, useAPIClient } from '@tiko-challenge/shared-api'
-import type { SignUpCredentials } from '../types/credentials'
+import type { SignUpCredentials } from '../types'
 
 type UseSignUp = {
   error: string | null

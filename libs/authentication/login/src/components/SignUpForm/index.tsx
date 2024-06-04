@@ -10,7 +10,7 @@ import {
   YStack
 } from 'tamagui'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import useSignUp from '../../hooks/useSignUp'
+import useSignUp from '../../../../login/src/hooks/useSignUp'
 import { User } from '@tiko-challenge/shared-api'
 
 interface SignUpFormProps {

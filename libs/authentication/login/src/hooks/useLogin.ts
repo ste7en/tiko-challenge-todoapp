@@ -1,13 +1,12 @@
 import React from 'react'
 import { useAPIClient } from '@tiko-challenge/shared-api'
-import { useSession } from './useSession'
+import { useSession } from '@tiko-challenge/authentication-core';
 
 type UseLogin = {
   isLoading: boolean
   error: string | null
   login: (email: string, password: string) => Promise<void>
 }
-// move to a new package -- login
 export default function useLogin(): UseLogin {
   const [isLoading, setIsLoading] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)

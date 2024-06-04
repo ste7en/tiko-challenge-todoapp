@@ -8,7 +8,7 @@ import {
 } from "tamagui";
 import { Eye, EyeOff } from '@tamagui/lucide-icons'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import useLogin from '../../hooks/useLogin';
+import useLogin from '../../../../login/src/hooks/useLogin';
 
 interface SignInFormProps {
   onSignupRedirect: () => void;
