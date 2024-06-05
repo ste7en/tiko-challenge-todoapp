@@ -1,7 +1,7 @@
 import '../../tamagui-web.css'
 
 import React from 'react';
-import { useColorScheme } from 'react-native';
+import { useColorScheme, StatusBar } from 'react-native';
 import { SplashScreen, Slot } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
@@ -35,8 +35,9 @@ export default function Root() {
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <TamaguiProvider config={tamaguiConfig}>
+      <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme ?? undefined}>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} />
           <SessionProvider>
             <APIClientProvider baseUrl={process.env.EXPO_PUBLIC_API_URL ?? 'localhost:3000'}>
               <SafeAreaProvider>
