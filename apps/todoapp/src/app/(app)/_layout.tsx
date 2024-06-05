@@ -2,12 +2,14 @@ import { Redirect, Stack } from 'expo-router';
 
 import { useSession } from '@tiko-challenge/authentication-core';
 import { Spinner, YStack } from 'tamagui';
+import { useAPIClientStatus } from '@tiko-challenge/shared-api';
 
 export default function AppLayout() {
-  const { session, isLoading, isValidated } = useSession();
+  const { session, isLoading } = useSession()
+  const { isReady } = useAPIClientStatus()
 
   // You can keep the splash screen open, or render a loading screen like we do here.
-  if (isLoading || (session && !isValidated)) {
+  if (isLoading || (session && !isReady)) {
     return (
       <YStack flex={1} alignItems='center' justifyContent='center'>
         <Spinner size='large' color='$orange10' />
