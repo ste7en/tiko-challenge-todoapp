@@ -41,6 +41,9 @@ const APIClientProvider: React.FC<APIClientProviderProps> = ({ baseUrl, children
           apiClient.setTokenRefresher(null)
           onSessionExpire()
         })
+    } else {
+      apiClient.setAuthorization(null)
+      apiClient.setTokenRefresher(null)
     }
   }, [session])
 
