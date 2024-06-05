@@ -7,12 +7,9 @@ const SignIn = () => {
   const onSignupRedirect = () => {
     navigate('/sign-up')
   }
-  const onLogin = (email: string, password: string) => {
-    // Call the authentication API
-  }
 
   return (
-    <SignInForm onLogin={onLogin} onSignupRedirect={onSignupRedirect} />
+    <SignInForm onSignupRedirect={onSignupRedirect} />
   )
 }
 
