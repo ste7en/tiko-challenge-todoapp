@@ -7,7 +7,7 @@ export default function AppLayout() {
   const { session, isLoading, isValidated } = useSession();
 
   // You can keep the splash screen open, or render a loading screen like we do here.
-  if (isLoading || !isValidated) {
+  if (isLoading || (session && !isValidated)) {
     return (
       <YStack flex={1} alignItems='center' justifyContent='center'>
         <Spinner size='large' color='$orange10' />
