@@ -1,11 +1,11 @@
-import { SignUpForm } from '@tiko-challenge/authentication-core'
+import { SignUpForm } from '@tiko-challenge/authentication-login'
 import { useRouter } from 'expo-router'
 import React from 'react'
 
 const SignUp = () => {
-  const {navigate} = useRouter()
+  const {navigate, back} = useRouter()
   return (
-    <SignUpForm onSignUpSuccess={() => navigate('/sign-in')}/>
+    <SignUpForm goBack={back} onSignUpSuccess={() => navigate('/sign-in')}/>
   )
 }
 

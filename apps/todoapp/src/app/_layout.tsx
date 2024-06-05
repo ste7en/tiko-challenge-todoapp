@@ -2,7 +2,7 @@ import '../../tamagui-web.css'
 
 import React from 'react';
 import { useColorScheme, StatusBar } from 'react-native';
-import { SplashScreen, Slot } from 'expo-router';
+import { SplashScreen, Slot, Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -42,7 +42,7 @@ export default function Root() {
             <APIClientProvider baseUrl={process.env.EXPO_PUBLIC_API_URL ?? 'localhost:3000'}>
               <SafeAreaProvider>
                 <ToastProvider>
-                  <Slot />
+                  <Stack screenOptions={{headerShown: false}} />
                 </ToastProvider>
               </SafeAreaProvider>
             </APIClientProvider>
