@@ -8,9 +8,10 @@ import {Plus} from '@tamagui/lucide-icons'
 import {useToastController} from '@tamagui/toast'
 import RawTodoItem from '../TodoItem/RawTodoItem'
 import useAddTodo from '../../hooks/useAddTodo'
+import SwipeableContainer from '../TodoItem/SwipeableContainer'
 
 const TodoList = () => {
-  const { todos, isLoading, refetch, setTodos } = useListTodos()
+  const { todos, isLoading, refetch, setTodos, deleteTodo } = useListTodos()
   const [edit, setEdit] = React.useState('')
   const inputRef = React.useRef<TextInput>(null)
   const {show} = useToastController()
@@ -47,12 +48,22 @@ const TodoList = () => {
     }
   }
 
+  const handleDelete = (id: number) => {
+    deleteTodo(id)
+  }
+
   return (
     <ScrollView
       refreshControl={<RefreshControl onRefresh={refetch} refreshing={isLoading} />}
     >
       {todos.map(todo => {
-        if (todo.id !== -1) return <TodoItem key={todo.id} todo={todo} />
+        if (todo.id !== -1) {
+          return (
+            <SwipeableContainer onDelete={() => handleDelete(todo.id)}>
+              <TodoItem key={todo.id} todo={todo} />
+            </SwipeableContainer>
+          )
+        }
         else {
           return (
             <RawTodoItem

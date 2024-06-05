@@ -8,6 +8,7 @@ type UseListTodos = {
   refetch: () => void
   setTodos: (todos: Todo[]) => void
   isLoading: boolean
+  deleteTodo: (id: number) => void
 }
 
 export default function useListTodos(): UseListTodos {
@@ -19,7 +20,7 @@ export default function useListTodos(): UseListTodos {
   
   const refetch = () => {
     setIsLoading(true)
-    if (cache) {
+    if (cache && !todos.length) {
       setTodos(JSON.parse(cache))
     }
     client.listTodos()
@@ -32,6 +33,30 @@ export default function useListTodos(): UseListTodos {
     }
   
   React.useEffect(refetch, [])
+
+  //TODO: refactor in a separate hook
+  const deleteTodo = (id: number) => {
+    if (!todos.find(todo => todo.id === id)) {
+      console.error(`Todo with id ${id} to delete not found!`)
+      return
+    }
+    const updatedTodos = todos.filter(todo => todo.id !== id)
+    setTodos(updatedTodos)
+    
+    client.deleteTodo(id)
+      .then(() => updateCache(JSON.stringify(updatedTodos)))
+      .catch(() => { setTodos(todos) })
+      .finally(refetch)
+  }
   
-  return { todos, isLoading, refetch, setTodos }
+  return {
+    todos,
+    isLoading,
+    refetch,
+    setTodos: todo => {
+      setTodos(todo)
+      updateCache(JSON.stringify(todo))
+    },
+    deleteTodo
+  }
 }
