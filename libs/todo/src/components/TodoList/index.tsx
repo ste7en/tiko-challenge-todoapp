@@ -17,8 +17,7 @@ const TodoList = () => {
   const {show} = useToastController()
 
   const onTodoAdded = () => {
-    setEdit('')
-    refetch()
+    refetch().then(() => setEdit(''))
   }
 
   const onTodoAddError = () => {
@@ -32,6 +31,12 @@ const TodoList = () => {
   const addNewTodo = useAddTodo(onTodoAdded, onTodoAddError)
 
   const addTodo = () => {
+    const empty = {id: -1, description: '', done: false}
+
+    if (!todos.length) { 
+      setTodos([empty])
+      return
+    }
     const lastTodo = todos[todos.length - 1];
 
     if (lastTodo.description !== '') {

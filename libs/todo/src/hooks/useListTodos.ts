@@ -5,7 +5,7 @@ import { useStorageState } from '@tiko-challenge/shared-configs'
 
 type UseListTodos = {
   todos: Todo[]
-  refetch: () => void
+  refetch: () => Promise<void>
   setTodos: (todos: Todo[]) => void
   isLoading: boolean
   deleteTodo: (id: number) => void
@@ -18,12 +18,12 @@ export default function useListTodos(): UseListTodos {
   const [[, cache], updateCache] = useStorageState('cached-todos')
   const client = useAPIClient()
   
-  const refetch = () => {
+  const refetch = async () => {
     setIsLoading(true)
     if (cache && !todos.length) {
       setTodos(JSON.parse(cache))
     }
-    client.listTodos()
+    return client.listTodos()
       .then(data => {
         setTodos(data)
         updateCache(JSON.stringify(data))
@@ -32,7 +32,7 @@ export default function useListTodos(): UseListTodos {
       .finally(() => setIsLoading(false))
     }
   
-  React.useEffect(refetch, [])
+  React.useEffect(() => { refetch() }, [])
 
   //TODO: refactor in a separate hook
   const deleteTodo = (id: number) => {
@@ -53,10 +53,7 @@ export default function useListTodos(): UseListTodos {
     todos,
     isLoading,
     refetch,
-    setTodos: todo => {
-      setTodos(todo)
-      updateCache(JSON.stringify(todo))
-    },
+    setTodos,
     deleteTodo
   }
 }
