@@ -7,7 +7,7 @@ const APIClientContext = createContext<APIClientContextValue>(undefined);
 
 const APIClientProvider: React.FC<APIClientContextProviderProps> = ({ baseUrl, children }) => {
   const [status, setStatus] = React.useState<APIClientStatus>('initializing')
-  const {onSessionChange, onSessionExpire, session} = useSession()
+  const {onSessionChange, onSessionExpire, session, setIsValidated} = useSession()
   const apiClient = APIClient.getInstance(baseUrl)
 
   React.useEffect(() => {
@@ -31,24 +31,24 @@ const APIClientProvider: React.FC<APIClientContextProviderProps> = ({ baseUrl, c
               apiClient.setAuthorization(newSession.access);
             } catch (e) {
               onSessionExpire()
+              setIsValidated(false)
             }
           })
           setStatus('ready')
+          setIsValidated(true)
         })
         .catch(() => {
           apiClient.setAuthorization(null)
           apiClient.setTokenRefresher(null)
           onSessionExpire()
+          setIsValidated(false)
           setStatus('error')
         })
     } else {
-      apiClient.setAuthorization(null)
-      apiClient.setTokenRefresher(null)
-    }
-
-    return () => {
-      apiClient.setAuthorization(null)
-      apiClient.setTokenRefresher(null)
+      if (status !== 'initializing') {
+        apiClient.setAuthorization(null)
+        apiClient.setTokenRefresher(null)
+      }
     }
   }, [session])
 
