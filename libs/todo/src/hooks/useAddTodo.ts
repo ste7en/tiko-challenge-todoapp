@@ -5,6 +5,9 @@ export default function useAddTodo(onSuccess?: () => void, onError?: (error: Err
   const client = useAPIClient()
 
   const addTodo = React.useCallback(async (description: string) => {
+    if (!description) {
+      return
+    }
     try {
       await client.createTodo({
         description,
