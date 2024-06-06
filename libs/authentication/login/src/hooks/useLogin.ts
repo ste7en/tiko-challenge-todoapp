@@ -23,7 +23,6 @@ export default function useLogin(): UseLogin {
         accessToken: data.access,
         refreshToken: data.refresh,
       })
-      console.log('Logged in', data)
     } catch (e) {
       console.log('Error logging in', e)
       if (e instanceof Error) {
