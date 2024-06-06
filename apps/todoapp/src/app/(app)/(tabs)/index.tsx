@@ -1,12 +1,17 @@
 import React from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { TodoList } from '@tiko-challenge/todo';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {useHeaderHeight} from '@react-navigation/elements'
 
 const Home = () => {
-  const {top} = useSafeAreaInsets()
+  const offset = useHeaderHeight()
   return (
-    <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={top}>
+    <KeyboardAvoidingView
+      behavior={'padding'}
+      keyboardVerticalOffset={offset}
+      style={{flex: 1}}
+      contentContainerStyle={{flex: 1}}
+    >
       <TodoList />
     </KeyboardAvoidingView>
   )
