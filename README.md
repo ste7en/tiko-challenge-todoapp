@@ -10,6 +10,27 @@
 2. Run `yarn install`
 3. Run `yarn start` to start the Expo server and bundler. Either press `i` or scan the QR code on your phone to run the app on your device with Expo Go.
 
+## Features
+
+### Required
+
+- [x] The user must be able to register an account
+- [x] The user must be able to log in into his account
+- [x] A system of token rotation must be implemented. For this the API provides you an access_token and a refresh_token. There are endpoints to refresh and validate the access_token. The lifetime of the access_token is 1 hour and the lifetime of the refresh_token is 1 day
+- [x] The user must be able to create todos
+- [x] The user must be able to change the "done" state of a todo
+- [x] The user must be able to logout
+
+### Not required but nice to have
+
+- [x] Done in React Native
+- [x] Good UI/UX experience
+- [x] The user can change the "description" of a todo
+- [x] The user must be able to delete todos
+- [x] Display loading when data is fetched from the network
+- [ ] Handle errors properly and display them in the UI.
+- [x] In case the token is invalid the app should go to log out state
+
 ## Integrate with editors
 
 Enhance your Nx experience by installing [Nx Console](https://nx.dev/nx-console) for your favorite editor. Nx Console
