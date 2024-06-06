@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useStorageState } from '@tiko-challenge/shared-configs';
 import { AuthenticationState } from '../../types/AuthenticationState';
 import {router} from 'expo-router';
@@ -22,7 +22,7 @@ export const AuthContext = React.createContext<SessionProviderValue>({
 
 export function SessionProvider(props: React.PropsWithChildren) {
   const [[isLoading, sessionJSON], setSession] = useStorageState('session');
-  const session: AuthenticationState = sessionJSON ? JSON.parse(sessionJSON) : null;
+  const session: AuthenticationState = useMemo(() => sessionJSON ? JSON.parse(sessionJSON) : null, [sessionJSON]);
 
   const onSessionExpire = () => {
     setSession(null);
